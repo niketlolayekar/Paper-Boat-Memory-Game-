@@ -1,15 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 
-import aamrasImg      from "@/imports/Screenshot_2026-08-20_235551.png"
-import chilliGuavaImg from "@/imports/Screenshot_2026-08-20_235607.png"
-import jaljeeeraImg   from "@/imports/Screenshot_2026-08-20_235623.png"
-import aamPannaImg    from "@/imports/Screenshot_2026-08-20_235639.png"
-import santraImg      from "@/imports/Screenshot_2026-08-20_235655.png"
-import coconutWaterImg from "@/imports/Screenshot_2026-08-20_235712.png"
-import jamunImg       from "@/imports/Screenshot_2026-08-20_235741.png"
-import anarImg        from "@/imports/Screenshot_2026-08-20_235757.png"
-import mixedFruitImg  from "@/imports/Screenshot_2026-08-20_235816.png"
-import lycheeImg      from "@/imports/Screenshot_2026-08-20_235837.png"
+// Removed local image imports so you can provide your own in public/images/
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -42,16 +33,11 @@ export interface UserInfo {
 // ─── Flavour Data ───────────────────────────────────────────────────────────
 
 const FLAVOURS: Flavour[] = [
-  { id: "aamras",       name: "Aamras",        img: aamrasImg,       accent: "#C07A00", bg: "#FFFAE8", emoji: "🥭" },
-  { id: "chilliguava",  name: "Chilli Guava",  img: chilliGuavaImg,  accent: "#4A8C1C", bg: "#F2FFED", emoji: "🌶️" },
-  { id: "jaljeera",     name: "Jaljeera",      img: jaljeeeraImg,    accent: "#8B6914", bg: "#FFFBEF", emoji: "🌿" },
-  { id: "aampanna",     name: "Aam Panna",     img: aamPannaImg,     accent: "#3A7D1A", bg: "#F2FFED", emoji: "🍃" },
-  { id: "santra",       name: "Santra",        img: santraImg,       accent: "#C94A00", bg: "#FFF5EE", emoji: "🍊" },
-  { id: "coconutwater", name: "Coconut Water", img: coconutWaterImg, accent: "#1B5E20", bg: "#EDF7EF", emoji: "🥥" },
-  { id: "jamun",        name: "Jamun",         img: jamunImg,        accent: "#6A1B9A", bg: "#F9F0FF", emoji: "🫐" },
-  { id: "anar",         name: "Anar",          img: anarImg,         accent: "#880E2F", bg: "#FFF0F3", emoji: "🍎" },
-  { id: "mixedfruit",   name: "Mixed Fruit",   img: mixedFruitImg,   accent: "#B71C1C", bg: "#FFF3F3", emoji: "🍓" },
-  { id: "lychee",       name: "Lychee",        img: lycheeImg,       accent: "#AD1457", bg: "#FFF0F6", emoji: "🍒" },
+  { id: "aamras",       name: "Aamras",        img: "/images/aamras.png",       accent: "#C07A00", bg: "#FFFAE8", emoji: "🥭" },
+  { id: "chilliguava",  name: "Chilli Guava",  img: "/images/chilliguava.png",  accent: "#4A8C1C", bg: "#F2FFED", emoji: "🌶️" },
+  { id: "jaljeera",     name: "Jaljeera",      img: "/images/jaljeera.png",    accent: "#8B6914", bg: "#FFFBEF", emoji: "🌿" },
+  { id: "aampanna",     name: "Aam Panna",     img: "/images/aampanna.png",     accent: "#3A7D1A", bg: "#F2FFED", emoji: "🍃" },
+  { id: "santra",       name: "Santra",        img: "/images/santra.png",       accent: "#C94A00", bg: "#FFF5EE", emoji: "🍊" },
 ]
 
 // ─── Utilities ──────────────────────────────────────────────────────────────
@@ -296,7 +282,7 @@ function GameHUD({
             style={{ background: "#2B7A4220", color: "#2B7A42" }}>
             <span>{matchedPairs}</span>
             <span className="opacity-50">/</span>
-            <span>10</span>
+            <span>5</span>
             <span className="ml-1 hidden md:inline">Pairs</span>
           </div>
         </div>
@@ -315,7 +301,7 @@ function GameHUD({
       {/* progress bar */}
       <div className="h-1 w-full bg-[#E8D8B0]">
         <div className="h-1 transition-all duration-500 rounded-r-full"
-          style={{ width: `${(matchedPairs / 10) * 100}%`,
+          style={{ width: `${(matchedPairs / 5) * 100}%`,
             background: "linear-gradient(90deg, #2B7A42, #F4782A)" }} />
       </div>
     </header>
@@ -491,7 +477,7 @@ function StartScreen({ onStart }: { onStart: () => void }) {
           </button>
           <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.75rem", color: "#9B7A40",
             marginTop: "8px", fontWeight: 600 }}>
-            Match all 10 flavours — 20 cards total
+            Match all 5 flavours — 10 cards total
           </p>
         </div>
       </div>
@@ -797,7 +783,7 @@ export default function App() {
             setFeedback(null)
             setJustMatchedUids([])
             setIsChecking(false)
-            if (newCount === 10) {
+            if (newCount === 5) {
               setFinalSeconds(prev => prev) // will use current via closure workaround below
               clearInterval(timerRef.current!)
               setScreen("win")
@@ -866,13 +852,13 @@ export default function App() {
           style={{ fontFamily: "'Nunito', sans-serif", color: "#9B7A40", fontSize: "0.8rem", fontWeight: 600 }}>
           {matchedPairs === 0
             ? "Flip two cards to find a matching pair! 🍹"
-            : matchedPairs < 10
-            ? `${10 - matchedPairs} pair${10 - matchedPairs === 1 ? "" : "s"} left — keep going! 🥭`
+            : matchedPairs < 5
+            ? `${5 - matchedPairs} pair${5 - matchedPairs === 1 ? "" : "s"} left — keep going! 🥭`
             : "Almost done!"}
         </p>
 
         {/* cards grid */}
-        <div className="grid grid-cols-4 grid-rows-5 sm:grid-cols-5 sm:grid-rows-4 gap-2 sm:gap-3 max-w-4xl w-full flex-1 min-h-0 pb-2">
+        <div className="grid grid-cols-5 grid-rows-2 gap-2 sm:gap-3 max-w-4xl w-full flex-1 min-h-0 pb-2">
           {cards.map(card => (
             <GameCardComponent
               key={card.uid}
@@ -886,7 +872,7 @@ export default function App() {
 
         {/* pair dots progress */}
         <div className="mt-1 flex items-center gap-1.5 flex-wrap justify-center">
-          {Array.from({ length: 10 }, (_, i) => (
+          {Array.from({ length: 5 }, (_, i) => (
             <div key={i} className="transition-all duration-500"
               style={{
                 width: i < matchedPairs ? "20px" : "8px",
@@ -900,7 +886,7 @@ export default function App() {
         </div>
         <p className="mt-1 mb-1" style={{ fontFamily: "'Nunito', sans-serif",
           fontSize: "0.65rem", color: "#9B7A40", fontWeight: 700 }}>
-          {matchedPairs} / 10 pairs found
+          {matchedPairs} / 5 pairs found
         </p>
       </main>
 
