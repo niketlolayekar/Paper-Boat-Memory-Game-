@@ -38,6 +38,9 @@ const FLAVOURS: Flavour[] = [
   { id: "jaljeera",     name: "Jaljeera",      img: "/images/jaljeera.png",    accent: "#8B6914", bg: "#FFFBEF", emoji: "🌿" },
   { id: "aampanna",     name: "Aam Panna",     img: "/images/aampanna.png",     accent: "#3A7D1A", bg: "#F2FFED", emoji: "🍃" },
   { id: "santra",       name: "Santra",        img: "/images/santra.png",       accent: "#C94A00", bg: "#FFF5EE", emoji: "🍊" },
+  { id: "jamun",        name: "Jamun",         img: "/images/jamun.png",        accent: "#6A1B9A", bg: "#F9F0FF", emoji: "🫐" },
+  { id: "anar",         name: "Anar",          img: "/images/anar.png",         accent: "#880E2F", bg: "#FFF0F3", emoji: "🍎" },
+  { id: "lychee",       name: "Lychee",        img: "/images/lychee.png",       accent: "#AD1457", bg: "#FFF0F6", emoji: "🍒" },
 ]
 
 // ─── Utilities ──────────────────────────────────────────────────────────────
@@ -282,7 +285,7 @@ function GameHUD({
             style={{ background: "#2B7A4220", color: "#2B7A42" }}>
             <span>{matchedPairs}</span>
             <span className="opacity-50">/</span>
-            <span>5</span>
+            <span>8</span>
             <span className="ml-1 hidden md:inline">Pairs</span>
           </div>
         </div>
@@ -301,7 +304,7 @@ function GameHUD({
       {/* progress bar */}
       <div className="h-1 w-full bg-[#E8D8B0]">
         <div className="h-1 transition-all duration-500 rounded-r-full"
-          style={{ width: `${(matchedPairs / 5) * 100}%`,
+          style={{ width: `${(matchedPairs / 8) * 100}%`,
             background: "linear-gradient(90deg, #2B7A42, #F4782A)" }} />
       </div>
     </header>
@@ -383,6 +386,7 @@ const START_DECO: Array<{ img: string | null; rot: number; x: string; y: string;
   { img: "/images/aampanna.png",     rot: -5,  x: "60%", y: "65%", dur: "4.1s", del: "0.8s",  scale: 0.8 },
   { img: "/images/chilliguava.png",  rot:  14, x: "15%", y: "62%", dur: "3.5s", del: "0.2s",  scale: 0.9 },
   { img: "/images/jaljeera.png",     rot: -8,  x: "88%", y: "50%", dur: "3.0s", del: "0.6s",  scale: 0.75 },
+  { img: "/images/anar.png",         rot:  6,  x: "3%",  y: "42%", dur: "4.3s", del: "1.0s",  scale: 0.7 },
 ]
 
 function StartScreen({ onStart }: { onStart: () => void }) {
@@ -476,7 +480,7 @@ function StartScreen({ onStart }: { onStart: () => void }) {
           </button>
           <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.75rem", color: "#9B7A40",
             marginTop: "8px", fontWeight: 600 }}>
-            Match all 5 flavours — 10 cards total
+            Match all 8 flavours — 16 cards total
           </p>
         </div>
       </div>
@@ -782,7 +786,7 @@ export default function App() {
             setFeedback(null)
             setJustMatchedUids([])
             setIsChecking(false)
-            if (newCount === 5) {
+            if (newCount === 8) {
               setFinalSeconds(prev => prev) // will use current via closure workaround below
               clearInterval(timerRef.current!)
               setScreen("win")
@@ -851,13 +855,13 @@ export default function App() {
           style={{ fontFamily: "'Nunito', sans-serif", color: "#9B7A40", fontSize: "0.8rem", fontWeight: 600 }}>
           {matchedPairs === 0
             ? "Flip two cards to find a matching pair! 🍹"
-            : matchedPairs < 5
-            ? `${5 - matchedPairs} pair${5 - matchedPairs === 1 ? "" : "s"} left — keep going! 🥭`
+            : matchedPairs < 8
+            ? `${8 - matchedPairs} pair${8 - matchedPairs === 1 ? "" : "s"} left — keep going! 🥭`
             : "Almost done!"}
         </p>
 
         {/* cards grid */}
-        <div className="grid grid-cols-5 grid-rows-2 gap-2 sm:gap-3 max-w-4xl w-full flex-1 min-h-0 pb-2">
+        <div className="grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3 max-w-4xl w-full flex-1 min-h-0 pb-2">
           {cards.map(card => (
             <GameCardComponent
               key={card.uid}
@@ -871,7 +875,7 @@ export default function App() {
 
         {/* pair dots progress */}
         <div className="mt-1 flex items-center gap-1.5 flex-wrap justify-center">
-          {Array.from({ length: 5 }, (_, i) => (
+          {Array.from({ length: 8 }, (_, i) => (
             <div key={i} className="transition-all duration-500"
               style={{
                 width: i < matchedPairs ? "20px" : "8px",
@@ -885,7 +889,7 @@ export default function App() {
         </div>
         <p className="mt-1 mb-1" style={{ fontFamily: "'Nunito', sans-serif",
           fontSize: "0.65rem", color: "#9B7A40", fontWeight: 700 }}>
-          {matchedPairs} / 5 pairs found
+          {matchedPairs} / 8 pairs found
         </p>
       </main>
 
