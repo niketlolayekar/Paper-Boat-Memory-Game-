@@ -378,12 +378,11 @@ function Confetti() {
 // ─── Start Screen ─────────────────────────────────────────────────────────────
 
 const START_DECO: Array<{ img: string | null; rot: number; x: string; y: string; dur: string; del: string; scale: number }> = [
-  { img: aamrasImg,       rot: -12, x: "8%",  y: "15%", dur: "3.2s", del: "0s",    scale: 0.9 },
-  { img: santraImg,       rot:  8,  x: "78%", y: "10%", dur: "3.8s", del: "0.4s",  scale: 0.85 },
-  { img: coconutWaterImg, rot: -5,  x: "60%", y: "65%", dur: "4.1s", del: "0.8s",  scale: 0.8 },
-  { img: jamunImg,        rot:  14, x: "15%", y: "62%", dur: "3.5s", del: "0.2s",  scale: 0.9 },
-  { img: lycheeImg,       rot: -8,  x: "88%", y: "50%", dur: "3.0s", del: "0.6s",  scale: 0.75 },
-  { img: anarImg,         rot:  6,  x: "3%",  y: "42%", dur: "4.3s", del: "1.0s",  scale: 0.7 },
+  { img: "/images/aamras.png",       rot: -12, x: "8%",  y: "15%", dur: "3.2s", del: "0s",    scale: 0.9 },
+  { img: "/images/santra.png",       rot:  8,  x: "78%", y: "10%", dur: "3.8s", del: "0.4s",  scale: 0.85 },
+  { img: "/images/aampanna.png",     rot: -5,  x: "60%", y: "65%", dur: "4.1s", del: "0.8s",  scale: 0.8 },
+  { img: "/images/chilliguava.png",  rot:  14, x: "15%", y: "62%", dur: "3.5s", del: "0.2s",  scale: 0.9 },
+  { img: "/images/jaljeera.png",     rot: -8,  x: "88%", y: "50%", dur: "3.0s", del: "0.6s",  scale: 0.75 },
 ]
 
 function StartScreen({ onStart }: { onStart: () => void }) {
