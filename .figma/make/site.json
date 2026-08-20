@@ -1,0 +1,10 @@
+{
+  "description": "Engage in a vibrant memory matching game featuring Paper Boat flavors, designed for family fun and nostalgia, enhancing memory skills while enjoying a playful experience.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
