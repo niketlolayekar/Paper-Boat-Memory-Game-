@@ -194,13 +194,13 @@ function CardFrontFace({ flavour }: { flavour: Flavour }) {
     <div className="w-full h-full rounded-2xl overflow-hidden flex flex-col"
       style={{ background: flavour.bg, border: `2px solid ${flavour.accent}33` }}>
       {/* image area */}
-      <div className="flex-1 overflow-hidden flex items-center justify-center p-1 sm:p-2">
+      <div className="flex-1 overflow-hidden flex items-center justify-center p-1">
         {flavour.img ? (
           <img
             src={flavour.img}
             alt={flavour.name}
-            className="w-full h-full object-contain object-center drop-shadow-md"
-            style={{ maxHeight: "100%", maxWidth: "100%" }}
+            className="w-full h-full object-contain object-center drop-shadow-xl"
+            style={{ maxHeight: "100%", maxWidth: "100%", transform: "scale(1.15)" }}
           />
         ) : (
           <ChilliGuavaIllustration />
@@ -242,7 +242,7 @@ function GameCardComponent({ card, onClick, locked, justMatched }: GameCardProps
 
   return (
     <div
-      className={`card-container w-full h-full aspect-[3/4] flex-shrink-0 ${
+      className={`card-container w-full h-full flex-shrink-0 ${
         clickable ? "cursor-pointer hover:scale-[1.03]" : "cursor-default"
       } transition-transform duration-200`}
       onClick={() => clickable && onClick(card.uid)}
@@ -859,10 +859,10 @@ export default function App() {
       />
 
       {/* board */}
-      <main className="flex-1 flex flex-col items-center py-6 px-3 sm:px-6">
+      <main className="flex-1 flex flex-col items-center py-2 px-2 sm:px-4 w-full h-full overflow-hidden">
 
         {/* subtitle */}
-        <p className="mb-4 text-center"
+        <p className="mb-2 text-center"
           style={{ fontFamily: "'Nunito', sans-serif", color: "#9B7A40", fontSize: "0.8rem", fontWeight: 600 }}>
           {matchedPairs === 0
             ? "Flip two cards to find a matching pair! 🍹"
@@ -872,7 +872,7 @@ export default function App() {
         </p>
 
         {/* cards grid */}
-        <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl w-full">
+        <div className="grid grid-cols-4 grid-rows-5 sm:grid-cols-5 sm:grid-rows-4 gap-2 sm:gap-3 max-w-4xl w-full flex-1 min-h-0 pb-2">
           {cards.map(card => (
             <GameCardComponent
               key={card.uid}
@@ -885,21 +885,21 @@ export default function App() {
         </div>
 
         {/* pair dots progress */}
-        <div className="mt-6 flex items-center gap-2 flex-wrap justify-center">
+        <div className="mt-1 flex items-center gap-1.5 flex-wrap justify-center">
           {Array.from({ length: 10 }, (_, i) => (
             <div key={i} className="transition-all duration-500"
               style={{
-                width: i < matchedPairs ? "24px" : "10px",
-                height: "10px",
-                borderRadius: "5px",
+                width: i < matchedPairs ? "20px" : "8px",
+                height: "8px",
+                borderRadius: "4px",
                 background: i < matchedPairs
                   ? "linear-gradient(90deg, #2B7A42, #4CAF50)"
                   : "#E8D8B0",
               }} />
           ))}
         </div>
-        <p className="mt-1.5" style={{ fontFamily: "'Nunito', sans-serif",
-          fontSize: "0.7rem", color: "#9B7A40", fontWeight: 700 }}>
+        <p className="mt-1 mb-1" style={{ fontFamily: "'Nunito', sans-serif",
+          fontSize: "0.65rem", color: "#9B7A40", fontWeight: 700 }}>
           {matchedPairs} / 10 pairs found
         </p>
       </main>
